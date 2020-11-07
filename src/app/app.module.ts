@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserPageComponent } from './user-page/user-page.component';
 
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,7 @@ import { UserPageComponent } from './user-page/user-page.component';
     AmplifyUIAngularModule,
     FormsModule, ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AmplifyService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

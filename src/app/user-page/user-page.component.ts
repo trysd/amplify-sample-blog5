@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { APIService, SearchablePostSortableFields, SearchableSortDirection } from 'src/app/api.service';
 import * as t from 'src/types';
 
+import { AmplifyService } from 'aws-amplify-angular';
+
+// https://qiita.com/Hitomi_Nagano/items/1df47c72d6db863831c6#%E7%B0%A1%E5%8D%98%E5%AE%9F%E8%A3%85
+import { Auth } from 'aws-amplify';
+
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
@@ -43,13 +48,30 @@ export class UserPageComponent implements OnInit {
 
   /** constractor */
   constructor(
-    private api: APIService
+    private api: APIService,
+    public amplify: AmplifyService
   ) { }
 
   /**
    * 初期設定
    */
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+
+    // ..
+    const resp = await Auth.currentSession()
+    const accessToken = resp.getAccessToken().getJwtToken();
+    console.log('token: ' + accessToken);
+
+    // ..
+    const data = await Auth.currentUserPoolUser()
+    console.log( data );
+
+    // handle auth state changes
+    this.amplify.authStateChange$.subscribe(authState => {
+      console.log(authState);
+    });
+
+      // console.log( this.amplify. );
 
     /**
      * ===== blog初期設定
