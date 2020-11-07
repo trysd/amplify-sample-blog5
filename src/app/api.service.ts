@@ -167,6 +167,67 @@ export type ModelCommentFilterInput = {
   not?: ModelCommentFilterInput | null;
 };
 
+export type SearchablePostFilterInput = {
+  id?: SearchableIDFilterInput | null;
+  title?: SearchableStringFilterInput | null;
+  blogID?: SearchableIDFilterInput | null;
+  createdAt?: SearchableStringFilterInput | null;
+  and?: Array<SearchablePostFilterInput | null> | null;
+  or?: Array<SearchablePostFilterInput | null> | null;
+  not?: SearchablePostFilterInput | null;
+};
+
+export type SearchableIDFilterInput = {
+  ne?: string | null;
+  gt?: string | null;
+  lt?: string | null;
+  gte?: string | null;
+  lte?: string | null;
+  eq?: string | null;
+  match?: string | null;
+  matchPhrase?: string | null;
+  matchPhrasePrefix?: string | null;
+  multiMatch?: string | null;
+  exists?: boolean | null;
+  wildcard?: string | null;
+  regexp?: string | null;
+  range?: Array<string | null> | null;
+};
+
+export type SearchableStringFilterInput = {
+  ne?: string | null;
+  gt?: string | null;
+  lt?: string | null;
+  gte?: string | null;
+  lte?: string | null;
+  eq?: string | null;
+  match?: string | null;
+  matchPhrase?: string | null;
+  matchPhrasePrefix?: string | null;
+  multiMatch?: string | null;
+  exists?: boolean | null;
+  wildcard?: string | null;
+  regexp?: string | null;
+  range?: Array<string | null> | null;
+};
+
+export type SearchablePostSortInput = {
+  field?: SearchablePostSortableFields | null;
+  direction?: SearchableSortDirection | null;
+};
+
+export enum SearchablePostSortableFields {
+  id = "id",
+  title = "title",
+  blogID = "blogID",
+  createdAt = "createdAt"
+}
+
+export enum SearchableSortDirection {
+  asc = "asc",
+  desc = "desc"
+}
+
 export type CreateBlogMutation = {
   __typename: "Blog";
   id: string;
@@ -546,6 +607,31 @@ export type ListCommentsQuery = {
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
+};
+
+export type SearchPostsQuery = {
+  __typename: "SearchablePostConnection";
+  items: Array<{
+    __typename: "Post";
+    id: string;
+    title: string;
+    blogID: string;
+    blog: {
+      __typename: "Blog";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    comments: {
+      __typename: "ModelCommentConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string | null;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  total: number | null;
 };
 
 export type OnCreateBlogSubscription = {
@@ -1409,6 +1495,60 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListCommentsQuery>response.data.listComments;
+  }
+  async SearchPosts(
+    filter?: SearchablePostFilterInput,
+    sort?: SearchablePostSortInput,
+    limit?: number,
+    nextToken?: string,
+    from?: number
+  ): Promise<SearchPostsQuery> {
+    const statement = `query SearchPosts($filter: SearchablePostFilterInput, $sort: SearchablePostSortInput, $limit: Int, $nextToken: String, $from: Int) {
+        searchPosts(filter: $filter, sort: $sort, limit: $limit, nextToken: $nextToken, from: $from) {
+          __typename
+          items {
+            __typename
+            id
+            title
+            blogID
+            blog {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
+            comments {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+          total
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (sort) {
+      gqlAPIServiceArguments.sort = sort;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (from) {
+      gqlAPIServiceArguments.from = from;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SearchPostsQuery>response.data.searchPosts;
   }
   OnCreateBlogListener: Observable<
     SubscriptionResponse<OnCreateBlogSubscription>

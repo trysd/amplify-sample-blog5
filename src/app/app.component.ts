@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { APIService, ListBlogsQuery, SearchablePostSortableFields, SearchableSortDirection } from './api.servece';
+import { APIService, ListBlogsQuery, SearchablePostSortableFields, SearchableSortDirection } from './api.service';
 import * as t from '../types';
 
 @Component({
