@@ -6,7 +6,6 @@ type Blog @model {
 
 type Post
   @model @key(name: "byBlog", fields: ["blogID", "title"])
-  @searchable
 {
   id: ID!
   title: String!
