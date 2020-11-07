@@ -1,5 +1,10 @@
 {
   "extends": "tslint:recommended",
+  "linterOptions": {
+    "exclude": [
+        "src/aws-exports.ts"
+    ]
+  },
   "rulesDirectory": [
     "codelyzer"
   ],
