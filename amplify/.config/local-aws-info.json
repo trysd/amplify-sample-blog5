@@ -1,0 +1,12 @@
+{
+    "developxxx": {
+        "configLevel": "project",
+        "useProfile": true,
+        "profileName": "blog03"
+    },
+    "testxxx": {
+        "configLevel": "project",
+        "useProfile": true,
+        "profileName": "blog03"
+    }
+}
