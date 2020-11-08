@@ -2,19 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
-/* import AmplifyUIAngularModule  */
-// import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
-
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserPageComponent } from './user-page/user-page.component';
-
-import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+import { AmplifyService } from 'aws-amplify-angular';
 
 @NgModule({
   declarations: [

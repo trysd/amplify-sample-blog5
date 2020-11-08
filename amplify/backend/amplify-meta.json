@@ -1,14 +1,14 @@
 {
   "providers": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-blog5-testxxx-183221-authRole",
-      "UnauthRoleArn": "arn:aws:iam::012952714535:role/amplify-blog5-testxxx-183221-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::012952714535:role/amplify-blog5-testxxx-183221-authRole",
+      "AuthRoleName": "amplify-blog5-developxxx-172122-authRole",
+      "UnauthRoleArn": "arn:aws:iam::012952714535:role/amplify-blog5-developxxx-172122-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::012952714535:role/amplify-blog5-developxxx-172122-authRole",
       "Region": "ap-northeast-1",
-      "DeploymentBucketName": "amplify-blog5-testxxx-183221-deployment",
-      "UnauthRoleName": "amplify-blog5-testxxx-183221-unauthRole",
-      "StackName": "amplify-blog5-testxxx-183221",
-      "StackId": "arn:aws:cloudformation:ap-northeast-1:012952714535:stack/amplify-blog5-testxxx-183221/4e714a60-21a5-11eb-8eb6-06255f79192a",
+      "DeploymentBucketName": "amplify-blog5-developxxx-172122-deployment",
+      "UnauthRoleName": "amplify-blog5-developxxx-172122-unauthRole",
+      "StackName": "amplify-blog5-developxxx-172122",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:012952714535:stack/amplify-blog5-developxxx-172122/390482b0-20d2-11eb-b5c2-0a949fc6e0c6",
       "AmplifyAppId": "d1ob67gmhnf357"
     }
   },
@@ -26,7 +26,15 @@
             }
           },
           "additionalAuthenticationProviders": []
-        }
+        },
+        "GraphQLAPIIdOutput": "ess4nbf2nrel5jzjbiqla5ryga",
+        "GraphQLAPIEndpointOutput": "https://fts54xnnsncwnn7xdddbncl7sm.appsync-api.ap-northeast-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-savqjwgkknhzfeqv5dlfrblstm"
+      },
+      "lastPushTimeStamp": "2020-11-08T09:47:43.046Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-blog5-developxxx-172122-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiblog5"
       }
     }
   },
@@ -35,7 +43,21 @@
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
-      "customAuth": false
+      "customAuth": false,
+      "output": {
+        "AppClientSecret": "1rlttunpkqibho763uko10qmoovdssh7s5g7c1uq99t6gjtif2pj",
+        "UserPoolId": "ap-northeast-1_TvwCkLiOQ",
+        "AppClientIDWeb": "21tvrkg06j5ii72jlttm8c5rvb",
+        "AppClientID": "7lqfvepj9aigrn1elpdi702s35",
+        "IdentityPoolId": "ap-northeast-1:733ec982-3127-4d12-ad53-d0e60bd4b8ea",
+        "IdentityPoolName": "blog57324318a_identitypool_7324318a__developxxx",
+        "UserPoolName": "blog57324318a_userpool_7324318a"
+      },
+      "lastPushTimeStamp": "2020-11-08T09:47:43.050Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-blog5-developxxx-172122-deployment/amplify-cfn-templates/auth/blog57324318a-cloudformation-template.yml",
+        "logicalId": "authblog57324318a"
+      }
     }
   }
 }
